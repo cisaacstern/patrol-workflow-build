@@ -8,4 +8,4 @@ dependencies:
   - pip
   - pip:
     - ecoscope[analysis,mapping,plotting] @ git+https://github.com/wildlife-dynamics/ecoscope@v1.8.2
-    - ecoscope_workflows[lithops,gcs] @ git+https://github.com/wildlife-dynamics/ecoscope-workflows@d597a2c
+    - ecoscope_workflows[lithops,gcs] @ git+https://github.com/wildlife-dynamics/ecoscope-workflows@v0.0.1
