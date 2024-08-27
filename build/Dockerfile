@@ -12,9 +12,8 @@ USER $MAMBA_USER
 # build the user-defined worker environment, which also adds python + pip
 # then, install the lithops dependencies into the new environment with pip
 COPY $ENVFILE ./
-RUN micromamba create --file $ENVFILE --name $ENVNAME --yes \
-    && micromamba clean --all -f --yes \
-    && micromamba run -n $ENVNAME python -m pip install --no-cache-dir \
+RUN micromamba create --file $ENVFILE --name $ENVNAME --yes
+RUN micromamba install -n $ENVNAME -c conda-forge --yes \
         six \
         gunicorn \
         pika \
@@ -22,13 +21,13 @@ RUN micromamba create --file $ENVFILE --name $ENVNAME --yes \
         gevent \
         PyYAML \
         cloudpickle \
-        ps-mem \
         tblib \
-        namegenerator \
         cryptography \
         httplib2 \
         google-api-python-client \
         psutil
+RUN micromamba run -n $ENVNAME python -m pip install ps-mem
+RUN micromamba clean --all -f --yes
 
 ENV CONCURRENCY 1
 ENV TIMEOUT 600
