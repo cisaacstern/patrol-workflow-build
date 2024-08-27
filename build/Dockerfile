@@ -17,30 +17,23 @@ RUN micromamba create --file $ENVFILE --name $ENVNAME --yes \
 # install the lithops dependencies into the new environment
 RUN micromamba run -n $ENVNAME python -m pip install --upgrade setuptools six pip \
     && micromamba run -n $ENVNAME python -m pip install --no-cache-dir \
-        wheel \
         gunicorn \
         pika \
         flask \
         gevent \
-        redis \
-        requests \
         PyYAML \
-        kubernetes \
-        numpy \
         cloudpickle \
         ps-mem \
         tblib \
         namegenerator \
         cryptography \
         httplib2 \
-        google-cloud-storage \
         google-api-python-client \
-        gcsfs \
-        google-auth \
         psutil
 
 ENV CONCURRENCY 1
 ENV TIMEOUT 600
+
 
 # Copy Lithops proxy and lib to the container image.
 # ENV APP_HOME /lithops
