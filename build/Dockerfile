@@ -41,4 +41,4 @@ WORKDIR $APP_HOME
 COPY lithops_cloudrun.zip .
 RUN unzip lithops_cloudrun.zip && rm lithops_cloudrun.zip
 
-CMD exec gunicorn --bind :$PORT --workers $CONCURRENCY --timeout $TIMEOUT lithopsproxy:proxy
+CMD micromamba run -n $ENVNAME gunicorn --bind :$PORT --workers $CONCURRENCY --timeout $TIMEOUT lithopsproxy:proxy
