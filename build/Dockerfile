@@ -12,7 +12,7 @@ USER $MAMBA_USER
 # build the user-defined worker environment, which also adds python + pip
 COPY $ENVFILE ./
 RUN micromamba create --file $ENVFILE --name $ENVNAME --yes \
-    && micromamba clean --all --yes
+    && micromamba clean --all -f --yes
 
 # install the lithops dependencies into the new environment
 RUN micromamba run -n $ENVNAME python -m pip install --upgrade setuptools six pip \
