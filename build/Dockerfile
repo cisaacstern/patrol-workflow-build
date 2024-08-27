@@ -10,13 +10,12 @@ RUN apt-get update && apt-get install -y \
 USER $MAMBA_USER
 
 # build the user-defined worker environment, which also adds python + pip
+# then, install the lithops dependencies into the new environment with pip
 COPY $ENVFILE ./
 RUN micromamba create --file $ENVFILE --name $ENVNAME --yes \
-    && micromamba clean --all -f --yes
-
-# install the lithops dependencies into the new environment
-RUN micromamba run -n $ENVNAME python -m pip install --upgrade setuptools six pip \
+    && micromamba clean --all -f --yes \
     && micromamba run -n $ENVNAME python -m pip install --no-cache-dir \
+        six \
         gunicorn \
         pika \
         flask \
