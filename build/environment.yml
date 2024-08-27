@@ -1,12 +1,31 @@
 channels:
   - conda-forge
 dependencies:
+  # workflow build dependencies
   - python=3.11
   - geopandas<=0.14.2
   - git
   - numpy<2
   - rasterio
   - pip
+  # lithops dependencies
+  # TODO: inject dynamically during build
+  - six
+  - gunicorn
+  - pika
+  - flask
+  - gevent
+  - PyYAML
+  - cloudpickle
+  - tblib
+  - cryptography
+  - httplib2
+  - google-api-python-client
+  - psutil
   - pip:
+    # workflow build dependencies
+    # TODO: create conda package for both of these with rattler-build
     - ecoscope[analysis,mapping,plotting] @ git+https://github.com/wildlife-dynamics/ecoscope@v1.8.2
     - ecoscope_workflows[lithops,gcs] @ git+https://github.com/wildlife-dynamics/ecoscope-workflows@fd6acc8
+    # lithops dependencies 
+    - ps-mem
