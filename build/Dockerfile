@@ -32,7 +32,7 @@ RUN micromamba create --file $ENVFILE --name $ENVNAME --yes \
 
 ENV CONCURRENCY 1
 ENV TIMEOUT 600
-
+ENV ENVNAME $ENVNAME
 
 # Copy Lithops proxy and lib to the container image.
 ENV APP_HOME /lithops
