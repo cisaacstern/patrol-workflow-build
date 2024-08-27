@@ -5,6 +5,7 @@ dependencies:
   - geopandas<=0.14.2
   - git
   - numpy<2
+  - rasterio
   - pip
   - pip:
     - ecoscope[analysis,mapping,plotting] @ git+https://github.com/wildlife-dynamics/ecoscope@v1.8.2
